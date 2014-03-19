@@ -1,6 +1,3 @@
-/**
- * Created by hen on 3/8/14.
- */
 
 var margin = {
     top: 50,
