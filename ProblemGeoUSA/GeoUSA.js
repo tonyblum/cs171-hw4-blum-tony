@@ -10,43 +10,12 @@ var width = 1060 - margin.left - margin.right;
 var height = 800 - margin.bottom - margin.top;
 var centered;
 
-var bbVis = {
-    x: 100,
-    y: 10,
-    w: width - 100,
-    h: 300
-};
-
-/*
-var detailVis = d3.select("#detailVis").append("svg").attr({
-    width:350,
-    height:200
-})
-
-
-var canvas = d3.select("#vis").append("svg").attr({
-    width: width + margin.left + margin.right,
-    height: height + margin.top + margin.bottom
-    })
-
-var svg = canvas.append("g").attr({
-        transform: "translate(" + margin.left + "," + margin.top + ")"
-    });
-*/
-
 var projection = d3.geo.albersUsa().translate([width / 2, height / 2]);//.precision(.1);
 var path = d3.geo.path().projection(projection);
 
 var svg = d3.select("body").append("svg")
     .attr("width", width)
     .attr("height", height);
-/*
-svg.append("rect")
-    .attr("class", "background")
-    .attr("width", width)
-    .attr("height", height)
-    .on("click", clicked);
-*/
 
 var g = svg.append("g");
 
@@ -54,10 +23,9 @@ console.log("hello world");
 
 function loadStations() {
     d3.csv("../data/NSRDB_StationsMeta.csv",function(error,data){
-        //....
+        console.log(data);
     });
 }
-
 
 function loadStats() {
 
@@ -70,7 +38,6 @@ function loadStats() {
     })
 
 }
-
 
 d3.json("../data/us-named.json", function(error, data) {
 
@@ -87,20 +54,10 @@ d3.json("../data/us-named.json", function(error, data) {
 
 	  g.append("path")		
 		.datum(usMap)  
-		//.datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
 	    .attr("id", "state-borders")
 	    .attr("d", path);
 
-
-	// new code
-
-	//	var usMap = topojson.feature(data, data.objects.states).features
-	//	console.log(usMap);
-
-	//	svg.selectAll("path").data(usMap).enter().append("path");
-    // see also: http://bl.ocks.org/mbostock/4122298
-
-    loadStats();
+    loadStations();
 });
 
 	function clicked(d) {
@@ -139,15 +96,5 @@ var updateDetailVis = function(data, name){
 }
 
 
-
-// ZOOMING
-function zoomToBB() {
-
-
-}
-
-function resetZoom() {
-    
-}
 
 
