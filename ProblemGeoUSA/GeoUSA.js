@@ -16,10 +16,12 @@ var bbVis = {
     h: 300
 };
 
+/*
 var detailVis = d3.select("#detailVis").append("svg").attr({
     width:350,
     height:200
 })
+
 
 var canvas = d3.select("#vis").append("svg").attr({
     width: width + margin.left + margin.right,
@@ -29,7 +31,7 @@ var canvas = d3.select("#vis").append("svg").attr({
 var svg = canvas.append("g").attr({
         transform: "translate(" + margin.left + "," + margin.top + ")"
     });
-
+*/
 
 var projection = d3.geo.albersUsa().translate([width / 2, height / 2]);//.precision(.1);
 var path = d3.geo.path().projection(projection);
