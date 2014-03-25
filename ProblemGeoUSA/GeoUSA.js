@@ -21,9 +21,27 @@ var g = svg.append("g");
 
 console.log("hello world");
 
+
+// http://gis.stackexchange.com/questions/34769/how-can-i-render-latitude-longitude-coordinates-on-a-map-with-d3
+var circle = svg.append("circle").attr("r",5).attr("transform", function() {return "translate(" + projection([-75,43]) + ")";});
+
+
 function loadStations() {
-    d3.csv("../data/NSRDB_StationsMeta.csv",function(error,data){
+    d3.csv("../data/NSRDB_StationsMeta.csv", function(error,data){
         console.log(data);
+
+	var latitude = 42.35;
+	var longitude = 71.06;
+	var screencoord = projection([longitude, latitude]);
+
+/*
+	g.append("g")
+	.attr("id", "states")
+    	.selectAll("path")	
+	.data(latitude)
+	.enter().append("path");
+*/
+	
     });
 }
 
