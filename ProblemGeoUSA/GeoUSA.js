@@ -34,6 +34,15 @@ var svg = canvas.append("g").attr({
 var projection = d3.geo.albersUsa().translate([width / 2, height / 2]);//.precision(.1);
 var path = d3.geo.path().projection(projection);
 
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+var g = svg.append("g");
+
+var screencoord = projection([42.36, -71.06]);
+
+console.log("hello world");
 
 var dataSet = {};
 
@@ -61,10 +70,31 @@ function loadStats() {
 
 d3.json("../data/us-named.json", function(error, data) {
 
-    var usMap = topojson.feature(data,data.objects.states).features
-    console.log(usMap);
+	var usMap = topojson.feature(data, data.objects.states).features
+	console.log(usMap);
 
-    //svg.selectAll(".country").data(usMap).enter().... 
+      g.append("g")
+      .attr("id", "states")
+    .selectAll("path")
+      .data(usMap)
+    .enter().append("path")
+      .attr("d", path);
+      //.on("click", clicked);
+
+	  g.append("path")
+		
+		.datum(usMap)  
+		//.datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
+	    .attr("id", "state-borders")
+	    .attr("d", path);
+
+
+	// new code
+
+	//	var usMap = topojson.feature(data, data.objects.states).features
+	//	console.log(usMap);
+
+	//	svg.selectAll("path").data(usMap).enter().append("path");
     // see also: http://bl.ocks.org/mbostock/4122298
 
     loadStats();
