@@ -30,9 +30,16 @@ function loadStations() {
     d3.csv("../data/NSRDB_StationsMeta.csv", function(error,data){
         console.log(data);
 
-	var latitude = 42.35;
-	var longitude = 71.06;
-	var screencoord = projection([longitude, latitude]);
+	var data1 = [-71, 42];
+
+	 svg.selectAll("circles.points") //  svg.selectAll
+	.data(data1)
+	.enter()
+	.append("circle")
+	.attr("r",5)
+	.attr("transform", function(d) {return "translate(" + projection([data1]) + ")";}); //projection([d.long,d.lat]
+
+
 
 /*
 	g.append("g")

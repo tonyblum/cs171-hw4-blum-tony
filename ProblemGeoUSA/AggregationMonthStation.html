@@ -24,7 +24,15 @@
         
 		// add your source code
 
-        saveToFile(reducedDataSet,"reducedMonthStationHour2003_2004.json")
+	//calculate the sum per each
+	//console.log(data.date);	
+	//console.log(data.size);
+
+	for(var key in data){
+		console.log(key);
+	}
+
+        saveToFile(data,"reducedMonthStationHour2003_2004.json") // reducedDataSet
 
 
 
