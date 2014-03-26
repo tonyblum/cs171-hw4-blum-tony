@@ -31,7 +31,8 @@
 	//console.log(data[690150]);
 
 	for(var key in data[690150]){		
-		console.log(data[690150][key]);
+		//console.log(data[690150][key]);
+		console.log(timeParser.parse(data[690150][key].date));
 	}
 
         saveToFile(data,"reducedMonthStationHour2003_2004.json") // reducedDataSet
