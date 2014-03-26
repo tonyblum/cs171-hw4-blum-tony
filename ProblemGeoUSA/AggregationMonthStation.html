@@ -30,10 +30,28 @@
 
 	//console.log(data[690150]);
 
-	for(var key in data[690150]){		
-		//console.log(data[690150][key]);
-		console.log(timeParser.parse(data[690150][key].date));
-	}
+	var sum = 0;
+
+
+
+		for(var key in data[[690150]){
+		
+			//console.log(data[690150][key]);
+			//console.log(timeParser.parse(data[690150][key].date));
+
+			//should I truncate the data to just include the time and get rid of the date
+			// and then sum hours with that time
+
+			//calculate the sum for each object
+			//console.log(data[690150][key].value);
+			sum += data[690150][key].value;
+			console.log(sum);	
+
+			//data[690150][key].sum += 10;
+		
+		}
+			console.log(data[690150].sum);
+		
 
         saveToFile(data,"reducedMonthStationHour2003_2004.json") // reducedDataSet
 
