@@ -16,7 +16,7 @@
 <script>
 
 
-    d3.json("../data/allData2003_2004.json",function(error,data){
+    d3.json("../data/allData2003_2004small.json",function(error,data){
        // console.log(data);
 
         var allDates = [];
@@ -50,6 +50,9 @@
 			//console.log(sum);	
 
 			//data[690150][key].sum += 10;
+
+			//Now i need to break sum down by hour to find the sum for each hour
+
 		
 		}
 			//console.log(data[690150].sum);

@@ -32,12 +32,12 @@ function loadStations() {
 
 	var data1 = [-71, 42];
 
-	 svg.selectAll("circles.points") //  svg.selectAll
-	.data(data1)
+	 svg.selectAll("circle") //  svg.selectAll
+	.data(data)
 	.enter()
 	.append("circle")
 	.attr("r",5)
-	.attr("transform", function(d) {return "translate(" + projection([data1]) + ")";}); //projection([d.long,d.lat]
+	.attr("transform", function(d) {console.log(d); return "translate(" + projection([d.LONG, d.LAT]) + ")";}); //projection([d.long,d.lat]
 
 
 
