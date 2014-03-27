@@ -56,12 +56,14 @@
 		for (var station in data){
 			var d = data[station];
 			//console.log(d);
-			for(var key in d){
+			d.forEach(function(dd){
 				//console.log(key);
-
-				if(key % 24 === 0){
-					rdstruct.hourly[0] += d[key].value;
+				//console.log(timeParser.parse(dd.date));
+				console.log(timeParser.parse(dd.date).getHours());
+				if(dd % 24 === 10){
+					rdstruct.hourly[0] += dd.value;
 				}				
+	/*		
 				if(key % 24 === 1){
 					rdstruct.hourly[1] += d[key].value;
 				}
@@ -133,11 +135,9 @@
 				}
 				//hourlysum += 
 				totalsum += d[key].value;
-
-			}
-			rdstruct[station] = totalsum;
-			rdstruct[station].hourly = 1;
-			rdstruct[station].hourly = 2;					
+*/
+			})
+			rdstruct[station] = totalsum;				
 		}
 
 		console.log(rdstruct);
