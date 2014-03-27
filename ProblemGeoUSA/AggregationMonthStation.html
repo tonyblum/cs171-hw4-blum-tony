@@ -16,134 +16,114 @@
 <script>
 
 
-    d3.json("../data/allData2003_2004small.json",function(error,data){
+    d3.json("../data/allData2003_2004.json",function(error,data){
        // console.log(data);
 
         var allDates = [];
         var timeParser = d3.time.format("%b %-d, %Y %X %p");
-        
-		var totalsum = 0;
-		///var hourly {};
-		var rdstruct = {total:0, hourly:{}};
-
-		rdstruct.hourly[0] = 0;
-		rdstruct.hourly[1] = 0;
-		rdstruct.hourly[2] = 0;
-		rdstruct.hourly[3] = 0;
-		rdstruct.hourly[4] = 0;
-		rdstruct.hourly[5] = 0;		
-		rdstruct.hourly[6] = 0;
-		rdstruct.hourly[7] = 0;		
-		rdstruct.hourly[8] = 0;
-		rdstruct.hourly[9] = 0;
-		rdstruct.hourly[10] = 0;
-		rdstruct.hourly[11] = 0;
-		rdstruct.hourly[12] = 0;
-		rdstruct.hourly[13] = 0;
-		rdstruct.hourly[14] = 0;	
-		rdstruct.hourly[15] = 0;
-		rdstruct.hourly[16] = 0;
-		rdstruct.hourly[17] = 0;
-		rdstruct.hourly[18] = 0;
-		rdstruct.hourly[19] = 0;
-		rdstruct.hourly[20] = 0;
-		rdstruct.hourly[21] = 0;
-		rdstruct.hourly[22] = 0;
-		rdstruct.hourly[23] = 0;
-
-		console.log(data);
+		var structarr = new Array();
 
 		for (var station in data){
+			var totalsum = 0;
+			var rdstruct = {total:0, hourly:{}};
+
+			for (var i = 0; i< 24; i++){
+				rdstruct.hourly[i] = 0;
+			}
+			// make an array of 
+
 			var d = data[station];
 			//console.log(d);
 			d.forEach(function(dd){
 				//console.log(key);
 				//console.log(timeParser.parse(dd.date));
-				console.log(timeParser.parse(dd.date).getHours());
-				if(dd % 24 === 10){
+				var index = timeParser.parse(dd.date).getHours();
+				if(index  === 0){
 					rdstruct.hourly[0] += dd.value;
+				}						
+				if(index === 1){
+					rdstruct.hourly[1] += dd.value;
+				}
+				if(index === 2){
+					rdstruct.hourly[2] += dd.value;
+				}
+				if(index === 3){
+					rdstruct.hourly[3] += dd.value;
+				}
+				if(index === 4){
+					rdstruct.hourly[4] += dd.value;
+				}
+				if(index === 5){
+					rdstruct.hourly[5] += dd.value;
+				}
+				if(index === 6){
+					rdstruct.hourly[6] += dd.value;
+				}
+				if(index === 7){
+					rdstruct.hourly[7] += dd.value;
+				}
+				if(index === 8){
+					rdstruct.hourly[8] += dd.value;
+				}
+				if(index === 9){
+					rdstruct.hourly[9] += dd.value;
+				}
+				if(index === 10){
+					rdstruct.hourly[10] += dd.value;
+				}
+				if(index === 11){
+					rdstruct.hourly[11] += dd.value;
+				}
+				if(index === 12){
+					rdstruct.hourly[12] += dd.value;
 				}				
-	/*		
-				if(key % 24 === 1){
-					rdstruct.hourly[1] += d[key].value;
+				if(index === 13){
+					rdstruct.hourly[13] += dd.value;
 				}
-				if(key % 24 === 2){
-					rdstruct.hourly[2] += d[key].value;
+				if(index === 14){
+					rdstruct.hourly[14] += dd.value;
 				}
-				if(key % 24 === 3){
-					rdstruct.hourly[3] += d[key].value;
+				if(index === 15){
+					rdstruct.hourly[15] += dd.value;
 				}
-				if(key % 24 === 4){
-					rdstruct.hourly[4] += d[key].value;
+				if(index === 16){
+					rdstruct.hourly[16] += dd.value;
 				}
-				if(key % 24 === 5){
-					rdstruct.hourly[5] += d[key].value;
+				if(index === 17){
+					rdstruct.hourly[17] += dd.value;
 				}
-				if(key % 24 === 6){
-					rdstruct.hourly[6] += d[key].value;
+				if(index === 18){
+					rdstruct.hourly[18] += dd.value;
 				}
-				if(key % 24 === 7){
-					rdstruct.hourly[7] += d[key].value;
+				if(index === 19){
+					rdstruct.hourly[19] += dd.value;
 				}
-				if(key % 24 === 8){
-					rdstruct.hourly[8] += d[key].value;
+				if(index === 20){
+					rdstruct.hourly[20] += dd.value;
 				}
-				if(key % 24 === 9){
-					rdstruct.hourly[9] += d[key].value;
+				if(index === 21){
+					rdstruct.hourly[21] += dd.value;
 				}
-				if(key % 24 === 10){
-					rdstruct.hourly[10] += d[key].value;
+				if(index === 22){
+					rdstruct.hourly[22] += dd.value;
 				}
-				if(key % 24 === 11){
-					rdstruct.hourly[11] += d[key].value;
-				}
-				if(key % 24 === 12){
-					rdstruct.hourly[12] += d[key].value;
-				}				
-				if(key % 24 === 13){
-					rdstruct.hourly[13] += d[key].value;
-				}
-				if(key % 24 === 14){
-					rdstruct.hourly[14] += d[key].value;
-				}
-				if(key % 24 === 15){
-					rdstruct.hourly[15] += d[key].value;
-				}
-				if(key % 24 === 16){
-					rdstruct.hourly[16] += d[key].value;
-				}
-				if(key % 24 === 17){
-					rdstruct.hourly[17] += d[key].value;
-				}
-				if(key % 24 === 18){
-					rdstruct.hourly[18] += d[key].value;
-				}
-				if(key % 24 === 19){
-					rdstruct.hourly[19] += d[key].value;
-				}
-				if(key % 24 === 20){
-					rdstruct.hourly[20] += d[key].value;
-				}
-				if(key % 24 === 21){
-					rdstruct.hourly[21] += d[key].value;
-				}
-				if(key % 24 === 22){
-					rdstruct.hourly[22] += d[key].value;
-				}
-				if(key % 24 === 23){
-					rdstruct.hourly[23] += d[key].value;
+				if(index === 23){
+					rdstruct.hourly[23] += dd.value;
 				}
 				//hourlysum += 
-				totalsum += d[key].value;
-*/
+				// this is cacluating one total sum rather than one total sum for each station
+				totalsum += dd.value;
+				rdstruct.total = totalsum;
 			})
-			rdstruct[station] = totalsum;				
+			//rdstruct[station] = totalsum;	
+			structarr.push(rdstruct);			
 		}
-
-		console.log(rdstruct);
-        saveToFile(rdstruct,"reducedMonthStationHour2003_2004.json") // reducedDataSet
+		console.log(structarr);
+		//console.log(rdstruct);
+        saveToFile(structarr,"reducedMonthStationHour2003_2004.json") // reducedDataSet
 
     })
+
 
     var saveToFile = function(object, filename){
         var blob, blobText;

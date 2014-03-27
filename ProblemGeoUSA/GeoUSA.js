@@ -19,7 +19,7 @@ var svg = d3.select("body").append("svg")
 
 var g = svg.append("g");
 
-console.log("hello world");
+//console.log("hello world");
 
 
 // http://gis.stackexchange.com/questions/34769/how-can-i-render-latitude-longitude-coordinates-on-a-map-with-d3
@@ -28,7 +28,7 @@ var circle = svg.append("circle").attr("r",5).attr("transform", function() {retu
 
 function loadStations() {
     d3.csv("../data/NSRDB_StationsMeta.csv", function(error,data){
-        console.log(data);
+       // console.log(data);
 
 	var data1 = [-71, 42];
 
@@ -37,7 +37,7 @@ function loadStations() {
 	.enter()
 	.append("circle")
 	.attr("r",5)
-	.attr("transform", function(d) {console.log(d); return "translate(" + projection([d.LONG, d.LAT]) + ")";}); //projection([d.long,d.lat]
+	.attr("transform", function(d) { return "translate(" + projection([d.LONG, d.LAT]) + ")";}); //projection([d.long,d.lat]
 
 
 
@@ -54,9 +54,10 @@ function loadStations() {
 
 function loadStats() {
 
-    d3.json("../data/reducedMonthStationHour2003_2004.json", function(error,data){
+    d3.json("../data/reducedMonthStationHour2003_2004_2.json", function(error,data){
         completeDataSet= data;
 
+	console.log(completeDataSet);
 		//....
 		
         loadStations();
@@ -67,7 +68,7 @@ function loadStats() {
 d3.json("../data/us-named.json", function(error, data) {
 
 	var usMap = topojson.feature(data, data.objects.states).features
-	console.log(usMap);
+	//console.log(usMap);
 
       g.append("g")
       .attr("id", "states")
@@ -83,6 +84,7 @@ d3.json("../data/us-named.json", function(error, data) {
 	    .attr("d", path);
 
     loadStations();
+	loadStats();
 });
 
 	function clicked(d) {
