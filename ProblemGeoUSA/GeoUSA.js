@@ -25,6 +25,7 @@ var g = svg.append("g");
 // http://gis.stackexchange.com/questions/34769/how-can-i-render-latitude-longitude-coordinates-on-a-map-with-d3
 // var circle = svg.append("circle").attr("r",5).attr("transform", function() {return "translate(" + projection([-75,43]) + ")";});
 var radius = 2;
+var completeDataSet; 
 
 function loadStats() {
 
@@ -33,9 +34,9 @@ function loadStats() {
 
 	console.log(Object.keys(completeDataSet));
 
-	console.log(completeDataSet);
+	
 		//....
-		return radius = 3;
+		return completeDataSet;
     })
 
 }
@@ -45,7 +46,10 @@ function loadStations() {
        // console.log(data);
 	loadStats();
 	console.log(radius);
+	console.log(completeDataSet);
 	//var radius = 2;
+
+	// from here I'd need to merge the two data sets and then take use index through this to define the radius as a variable
 
 	var data1 = [-71, 42];
 
