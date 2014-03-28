@@ -23,12 +23,29 @@ var g = svg.append("g");
 
 
 // http://gis.stackexchange.com/questions/34769/how-can-i-render-latitude-longitude-coordinates-on-a-map-with-d3
-var circle = svg.append("circle").attr("r",5).attr("transform", function() {return "translate(" + projection([-75,43]) + ")";});
+// var circle = svg.append("circle").attr("r",5).attr("transform", function() {return "translate(" + projection([-75,43]) + ")";});
+var radius = 2;
 
+function loadStats() {
+
+    d3.json("../data/reducedMonthStationHour2003_2004_3.json", function(error,data){
+        completeDataSet= data;
+
+	console.log(Object.keys(completeDataSet));
+
+	console.log(completeDataSet);
+		//....
+		return radius = 3;
+    })
+
+}
 
 function loadStations() {
     d3.csv("../data/NSRDB_StationsMeta.csv", function(error,data){
        // console.log(data);
+	loadStats();
+	console.log(radius);
+	//var radius = 2;
 
 	var data1 = [-71, 42];
 
@@ -36,9 +53,8 @@ function loadStations() {
 	.data(data)
 	.enter()
 	.append("circle")
-	.attr("r",5)
+	.attr("r", radius)
 	.attr("transform", function(d) { return "translate(" + projection([d.LONG, d.LAT]) + ")";}); //projection([d.long,d.lat]
-
 
 
 /*
@@ -50,19 +66,6 @@ function loadStations() {
 */
 	
     });
-}
-
-function loadStats() {
-
-    d3.json("../data/reducedMonthStationHour2003_2004_2.json", function(error,data){
-        completeDataSet= data;
-
-	console.log(completeDataSet);
-		//....
-		
-        loadStations();
-    })
-
 }
 
 d3.json("../data/us-named.json", function(error, data) {
@@ -83,8 +86,8 @@ d3.json("../data/us-named.json", function(error, data) {
 	    .attr("id", "state-borders")
 	    .attr("d", path);
 
-    loadStations();
 	loadStats();
+    loadStations();
 });
 
 	function clicked(d) {

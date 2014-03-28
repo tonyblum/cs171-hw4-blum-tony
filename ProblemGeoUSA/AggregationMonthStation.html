@@ -25,8 +25,8 @@
 
 		for (var station in data){
 			var totalsum = 0;
-			var rdstruct = {total:0, hourly:{}};
-
+			var rdstruct = {id: "none", total:0, hourly:{}};
+			rdstruct.id = station;
 			for (var i = 0; i< 24; i++){
 				rdstruct.hourly[i] = 0;
 			}
@@ -38,6 +38,7 @@
 				//console.log(key);
 				//console.log(timeParser.parse(dd.date));
 				var index = timeParser.parse(dd.date).getHours();
+
 				if(index  === 0){
 					rdstruct.hourly[0] += dd.value;
 				}						
@@ -114,6 +115,7 @@
 				// this is cacluating one total sum rather than one total sum for each station
 				totalsum += dd.value;
 				rdstruct.total = totalsum;
+				//rdstruct.id = d;
 			})
 			//rdstruct[station] = totalsum;	
 			structarr.push(rdstruct);			
